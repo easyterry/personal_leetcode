@@ -23,6 +23,30 @@
       addWithoutPlus(1, 2)
 
       /**
+       * [twoSum 两数之和]
+       * @method twoSum
+       * @param  {[Array]} nums [整数数组]
+       * @param  {[Number]} target [目标整数]
+       */
+      function twoSum(nums, target) {
+        let map = new Map()
+
+        for (let i = 0; i < nums.length; i++) {
+          let substract = target - nums[i]
+
+          if (map.has(substract)) {
+            return [i, map.get(substract)]
+          }
+          map.set(nums[i], i)
+        }
+        return false
+      }
+
+      console.log(twoSum([
+        2, 7, 11, 15
+      ], 9));
+
+      /**
        * [factorial 阶乘末尾0的个数]
        */
       function factorial(n) {
@@ -69,7 +93,7 @@
           return false;
         return valid
       }
-      isValid('{[]}'); // false
+      isValid('{[]}'); // true
 
       /**
        * [sortArray 合并数组并升序]
@@ -345,6 +369,144 @@
         return 0
       }
       lengthOfLastWord('a ')
+
+      /**
+       * [plusOne Leetcode.66 —— 加一]
+       * @url https://leetcode-cn.com/problems/plus-one/
+       */
+      function plusOne(digits) {
+        let num = digits.map((item, index) => {
+          return item.toString()
+        }).reduce((accumulator, currentVal) => accumulator + currentVal)
+        let newArr = (num + 1).toString().split('')
+
+        return newArr
+      }
+      // 未解决: 整数溢出
+      plusOne([
+        6,
+        1,
+        4,
+        5,
+        3,
+        9,
+        0,
+        1,
+        9,
+        5,
+        1,
+        8,
+        6,
+        7,
+        0,
+        5,
+        5,
+        4,
+        3
+      ])
+
+      // "abcabcbb"
+      function lengthOfLongestSubstring(s) {
+        let substr = '',
+          maxLength = 0;
+
+        for (var i = 0; i < s.length; i++) {
+          let findIndex = substr.indexOf(s[i]);
+          if (~ findIndex) {
+            substr = substr.substring(findIndex + 1);
+          }
+          substr += s[i];
+          if (substr.length > maxLength) {
+            maxLength = substr.length;
+          }
+        }
+        return maxLength;
+      }
+
+      lengthOfLongestSubstring('abcabcbb');
+
+      /**
+       * [climbStairs 爬楼梯]
+       * @Q: 假设你正在爬楼梯。需要 n 阶你才能到达楼顶。
+                  每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？
+          tips: 斐波那契数列
+       */
+      function climbStairs(n) {
+        if (n <= 1) {
+          return 1
+        }
+        let dp = []
+        dp[0] = 1
+        dp[1] = 1
+
+        for (let i = 2; i <= n; i++) {
+          dp[i] = dp[i - 1] + dp[i - 2]
+        }
+        return dp[n]
+      }
+
+      console.log(climbStairs(11));
+
+      /**
+       * [maxSubArray 最大子序和]
+       * @param  {[Array]} nums [整数数组]
+       * 动态规划算法
+       * leetcode 53
+       */
+      function maxSubArray(nums) {
+        if (nums.length) {
+          let currentNum = nums[0]
+          let sum = nums[0]
+
+          for (let i = 1; i < nums.length; i++) {
+            currentNum = currentNum < 0
+              ? nums[i]
+              : currentNum + nums[i]
+            sum = Math.max(currentNum, sum)
+          }
+          return sum
+        }
+      }
+
+      console.log(maxSubArray([
+        -2,
+        1,
+        -3,
+        4,
+        -1,
+        2,
+        1,
+        -5,
+        4
+      ])); //6
+
+      /**
+       * [maxProfit 买卖股票的最佳时机]
+       * @param  {[Array]} prices [给定股票每天的价格]
+       * @return {[Number]} 最大利润
+       */
+      function maxProfit(prices) {
+        let price = prices[0]
+        let maxProfit = 0
+
+        for (let i = 0; i < prices.length; i++) {
+          if (price < prices[i]) {
+            maxProfit = Math.max(maxProfit, prices[i] - price)
+          } else {
+            price = prices[i]
+          }
+        }
+        return maxProfit
+      }
+
+      maxProfit([
+        7,
+        1,
+        5,
+        3,
+        6,
+        4
+      ]); //5
     </script>
   </body>
 </html>
