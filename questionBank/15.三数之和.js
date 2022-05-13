@@ -1,7 +1,7 @@
 /*
  * @Author: linzhihai
  * @Date: 2021-08-12 15:44:23
- * @LastEditTime: 2021-08-13 11:37:23
+ * @LastEditTime: 2022-04-13 19:05:20
  * @Description:
  */
 /*
@@ -18,44 +18,40 @@
 输出：[[-1,-1,2],[-1,0,1]]
  */
 var threeSum = function (nums) {
-	var res = []
-	var n = nums.length
+  const len = nums.length;
+  nums.sort((a, b) => a - b);
+  const res = [];
 
-	if (nums.length < 3) {
-		return []
-	}
+  for (let i = 0; i < len - 2; i++) {
+    if (nums[i] > 0) break;
 
-	nums.sort((a, b) => a - b)
+    if (i > 0 && nums[i] === nums[i - 1]) continue;
 
-	for (let i = 0; i < n - 2; i++) {
-		if (nums[i] > 0) break
-		// 重复过的话就跳过
-		if (i > 0 && nums[i] === nums[i - 1]) continue
+    let left = i + 1;
+    let right = len - 1;
 
-		var left = i + 1,
-			right = n - 1
+    while (left < right) {
+      const sum = nums[i] + nums[left] + nums[right];
 
-		while (left < right) {
-			var sum = nums[i] + nums[left] + nums[right]
+      if (sum > 0) {
+        right--;
+        continue;
+      }
 
-			if (sum > 0) {
-				right--
-				continue
-			}
-			if (sum < 0) {
-				left++
-				continue
-			}
+      if (sum < 0) {
+        left++;
+        continue;
+      }
 
-			res.push([nums[i], nums[left], nums[right]])
+      res.push([nums[i], nums[left], nums[right]]);
 
-			while (left < right && nums[left] === nums[++left]);
-			while (left < right && nums[right] === nums[--right]);
-		}
-	}
+      while (left < right && nums[left] === nums[++left]);
+      while (left < right && nums[right] === nums[--right]);
+    }
+  }
 
-	return res
-}
+  return res;
+};
 
-threeSum([-1, 0, 1, 2, -1, -4])
+threeSum([-1, 0, 1, 2, -1, -4]);
 // @lc code=end

@@ -1,8 +1,8 @@
 /*
  * @Author: linzhihai
  * @Date: 2021-06-17 09:39:38
- * @LastEditTime: 2021-06-17 10:05:03
- * @Description: 
+ * @LastEditTime: 2022-04-19 14:27:49
+ * @Description:
  */
 /*
  * @lc app=leetcode.cn id=206 lang=javascript
@@ -24,17 +24,17 @@
  *  1 -> 2 -> 3 -> x
  *  x <- 1 <- 2 <- 3
  */
-var reverseList = function(head) {
-    let curr = head;
-    let prev = null;
-    while (curr) {
-        const next = curr.next;
-        curr.next = prev;
-        prev = curr;
-        curr = next;
-    }
+var reverseList = function (head) {
+	let curr = head
+	let prev = null
 
-    return prev;
-};
+	while (curr) {
+		const next = curr.next
+		curr.next = prev
+		prev = curr
+		curr = next
+	}
+
+	return prev
+}
 // @lc code=end
-
