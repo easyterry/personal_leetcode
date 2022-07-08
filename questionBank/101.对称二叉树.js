@@ -1,7 +1,7 @@
 /*
  * @Author: linzhihai
  * @Date: 2021-08-06 10:41:09
- * @LastEditTime: 2021-08-06 11:38:39
+ * @LastEditTime: 2022-05-13 18:35:16
  * @Description:
  */
 /*
@@ -32,8 +32,8 @@ var isSymmetric = function (root) {
 
 		return (
 			left.val === right.val &&
-			isEqual(left.left === right.right) &&
-			isEqual(left.right === right.left)
+			isEqual(left.left, right.right) &&
+			isEqual(left.right, right.left)
 		)
 	}
 }

@@ -1,7 +1,7 @@
 /*
  * @Author: linzhihai
  * @Date: 2021-08-09 15:28:37
- * @LastEditTime: 2021-08-09 17:26:46
+ * @LastEditTime: 2022-07-07 14:37:00
  * @Description:
  */
 /*
@@ -27,14 +27,7 @@
 输出：[1,4,3,2,5]
  */
 var reverseBetween = function (head, left, right) {
-	var successor = null
-
-	function reverseList(head, n) {
-		if (n === 1) {
-            successor = head.next
-            return head
-        }
-	}
+	
 }
 
 // @lc code=end

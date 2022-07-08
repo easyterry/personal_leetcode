@@ -1,7 +1,7 @@
 /*
  * @Author: linzhihai
  * @Date: 2021-07-16 17:50:32
- * @LastEditTime: 2021-07-16 18:46:28
+ * @LastEditTime: 2022-06-02 18:59:01
  * @Description: 
  */
 /*
@@ -28,7 +28,7 @@ var preorderTraversal = function (root) {
 	var list = []
 	stack.push(root)
 
-	if (stack.length) {
+	while (stack.length) {
 		var node = stack.pop()
 
 		list.push(node.val)

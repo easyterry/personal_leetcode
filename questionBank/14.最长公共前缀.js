@@ -1,7 +1,7 @@
 /*
  * @Author: linzhihai
  * @Date: 2021-07-05 15:34:38
- * @LastEditTime: 2021-07-05 15:52:47
+ * @LastEditTime: 2022-07-07 14:19:01
  * @Description:
  */
 /*
@@ -17,21 +17,20 @@
  * @param {string[]} strs
  * @return {string}
  */
-var longestCommonPrefix = function (strs) {
-	if (strs.length === 0 || strs === null) return ''
-
-	let commonPrefix = ''
-
-	for (let i = 1; i < strs.length; i++) {
-		let j = 0
-		for (; j < strs[0].length; j++) {
-			if (strs[0][j] !== strs[i][j]) {
-				break
-			}
-		}
-		commonPrefix = strs[0].slice(0, j)
+var longestCommonPrefix = function (strs) {	// 参考：https://leetcode-cn.com/problems/longest-common-prefix/solution/zui-chang-gong-gong-qian-zhui-by-leetcode/
+	if (strs.length === 0) {
+		return ''
 	}
 
-	return commonPrefix
+	var res = strs[0]
+	for (var i = 1; i < strs.length; i++) {
+		while (strs[i].indexOf(res) !== 0) {
+			res = res.substring(0, res.length - 1)
+		}
+	}
+
+	return res
 }
+
+longestCommonPrefix(['flower', 'flow', 'flight'])
 // @lc code=end

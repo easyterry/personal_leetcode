@@ -1,7 +1,7 @@
 /*
  * @Author: linzhihai
  * @Date: 2021-08-09 10:50:02
- * @LastEditTime: 2021-08-09 11:12:19
+ * @LastEditTime: 2022-07-08 11:32:54
  * @Description:
  */
 /*
@@ -33,5 +33,5 @@ var dailyTemperatures = function (temperatures) {
 	return res
 }
 
-dailyTemperatures([89, 62, 70, 58, 47, 47, 46, 76, 100, 70])
+dailyTemperatures([73, 74, 75, 71, 69, 72, 76, 73])
 // @lc code=end
