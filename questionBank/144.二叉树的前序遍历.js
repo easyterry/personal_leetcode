@@ -1,8 +1,8 @@
 /*
  * @Author: linzhihai
  * @Date: 2021-07-16 17:50:32
- * @LastEditTime: 2022-06-02 18:59:01
- * @Description: 
+ * @LastEditTime: 2022-04-25 18:21:26
+ * @Description:
  */
 /*
  * @lc app=leetcode.cn id=144 lang=javascript
@@ -24,24 +24,17 @@
  * @return {number[]}
  */
 var preorderTraversal = function (root) {
-	var stack = []
-	var list = []
-	stack.push(root)
+  var res = [];
 
-	while (stack.length) {
-		var node = stack.pop()
+  function traverse(root) {
+    if (root) {
+      res.push(root.val);
+      traverse(root.left);
+      traverse(root.right);
+    }
+  }
 
-		list.push(node.val)
-
-		if (node.right !== null) {
-			stack.push(node.right)
-		}
-
-		if (node.left !== null) {
-			stack.push(node.left)
-		}
-	}
-
-	return list
-}
+  traverse(root);
+  return res;
+};
 // @lc code=end

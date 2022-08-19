@@ -1,8 +1,8 @@
 /*
  * @Author: linzhihai
  * @Date: 2022-04-11 10:40:39
- * @LastEditTime: 2022-06-22 15:16:50
- * @Description:
+ * @LastEditTime: 2022-04-11 10:44:28
+ * @Description: 
  */
 /*
  * @lc app=leetcode.cn id=110 lang=javascript
@@ -23,22 +23,9 @@
  * @param {TreeNode} root
  * @return {boolean}
  */
-var isBalanced = function (root) {
-	return helper(root) !== -1
-
-	function helper(root) {
-		if (root === null) {
-			return 0
-		}
-
-		let left = helper(root.left)
-		let right = helper(root.right)
-
-		if (Math.abs(left - right) > 1 || left < 0 || right < 0) {
-			return -1
-		}
-		return Math.max(left, right) + 1
-	}
-}
+var isBalanced = function(root) {
+  
+};
 
 // @lc code=end
+

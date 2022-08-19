@@ -1,7 +1,7 @@
 /*
  * @Author: linzhihai
  * @Date: 2022-02-16 19:16:16
- * @LastEditTime: 2022-02-19 15:35:25
+ * @LastEditTime: 2022-05-13 16:52:43
  * @Description:
  */
 /*
@@ -23,20 +23,20 @@
     向右轮转 3 步: [5,6,7,1,2,3,4]
  */
 var rotate = function (nums, k) {
-  k %=  nums.length;
+	k %= nums.length
 
-  reverse(nums, 0, nums.length - 1);
-  reverse(nums, 0, k - 1);
-  reverse(nums, k, nums.length - 1);
-};
+	reverse(nums, 0, nums.length - 1)
+	reverse(nums, 0, k - 1)
+	reverse(nums, k, nums.length - 1)
+}
 
 var reverse = function (nums, i, j) {
-  while (i < j) {
-    [nums[i], nums[j]] = [nums[j], nums[i]];
-    i++;
-    j--;
-  }
-};
+	while (i < j) {
+		[nums[i], nums[j]] = [nums[j], nums[i]]
+		i++
+		j--
+	}
+}
 
-rotate([1, 2, 3, 4, 5, 6, 7], 3);
+rotate([1, 2, 3, 4, 5, 6, 7], 3)
 // @lc code=end

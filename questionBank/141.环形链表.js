@@ -1,8 +1,8 @@
 /*
  * @Author: linzhihai
  * @Date: 2021-07-16 16:10:38
- * @LastEditTime: 2022-05-13 18:18:27
- * @Description:
+ * @LastEditTime: 2021-07-16 16:12:34
+ * @Description: 
  */
 /*
  * @lc app=leetcode.cn id=141 lang=javascript
@@ -23,20 +23,6 @@
  * @param {ListNode} head
  * @return {boolean}
  */
-// var hasCycle = function (head) {
-// 	var fast = head
-// 	var slow = head
-
-// 	while (fast !== null && fast.next !== null) {
-// 		fast = fast.next.next
-// 		slow = slow.next
-
-// 		if (slow === fast) return true
-// 	}
-
-// 	return false
-// }
-
 var hasCycle = function (head) {
 	var fast = head
 	var slow = head

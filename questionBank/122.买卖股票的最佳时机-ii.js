@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode.cn id=121 lang=javascript
+ * @lc app=leetcode.cn id=122 lang=javascript
  *
- * [121] 买卖股票的最佳时机
+ * [122] 买卖股票的最佳时机 II
  */
 
 // @lc code=start

@@ -1,8 +1,8 @@
 /*
  * @Author: linzhihai
- * @Date: 2022-02-16 16:36:45
- * @LastEditTime: 2022-07-05 17:38:49
- * @Description: 
+ * @Date: 2021-12-24 10:37:25
+ * @LastEditTime: 2022-05-13 14:22:33
+ * @Description:
  */
 /*
  * @lc app=leetcode.cn id=21 lang=javascript
@@ -24,21 +24,34 @@
  * @return {ListNode}
  */
 var mergeTwoLists = function (list1, list2) {
-	var res = new ListNode(-1)
-	var cur = res
+  if (list1 === null && list2 === null) {
+    return null;
+  }
+  if (list1 === null) {
+    return list2;
+  }
+  if (list2 === null) {
+    return list1;
+  }
 
-	while (list1 && list2) {
-		if (list1.val < list2.val) {
-			cur.next = list1
-			list1 = list1.next
-		} else {
-			cur.next = list2
-			list2 = list2.next
-		}
-		cur = cur.next
-	}
+  var result = new ListNode();
+  var current = result;
 
-	cur.next = list1 ? list1 : list2
-	return res.next
-}
+  while (list1 !== null && list2 !== null) {
+    if (list1.val <= list2.val) {
+      current.next = list1;
+
+      list1 = list1.next;
+    } else {
+      current.next = list2;
+
+      list2 = list2.next;
+    }
+
+    current = current.next;
+  }
+  current.next = list1 ?? list2;
+
+  return result.next;
+};
 // @lc code=end
