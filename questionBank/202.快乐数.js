@@ -1,7 +1,7 @@
 /*
  * @Author: linzhihai
  * @Date: 2022-07-07 15:15:58
- * @LastEditTime: 2022-07-07 15:33:31
+ * @LastEditTime: 2022-08-25 14:48:24
  * @Description:
  */
 /*
@@ -16,22 +16,27 @@
  * @return {boolean}
  */
 var isHappy = function (n) {
-	var hash = {}
-	while (n !== 1) {
-		if (hash[n]) return false
-		hash[n] = true
-		n = sum(n)
-	}
-	return true
-}
+	var slow = n
+	var fast = n
 
-var sum = function (n) {
-	var sum = 0
-	while (n) {
-		sum += Math.pow(n % 10, 2)
-		n = Math.floor(n / 10)
-	}
-	return sum
-}
+	do {
+		slow = getNext(slow)
+		fast = getNext(getNext(fast))
+	} while (slow !== fast)
 
+	return slow === 1
+
+	function getNext(num) {
+		var res = 0
+
+		while (num > 0) {
+			var t = num % 10
+			res += t * t
+			num = Math.floor(num / 10)
+		}
+
+		return res
+	}
+}
+isHappy(19)
 // @lc code=end

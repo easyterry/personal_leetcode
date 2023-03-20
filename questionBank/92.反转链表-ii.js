@@ -1,7 +1,7 @@
 /*
  * @Author: linzhihai
  * @Date: 2021-08-09 15:28:37
- * @LastEditTime: 2021-08-09 17:26:46
+ * @LastEditTime: 2022-11-16 15:26:12
  * @Description:
  */
 /*
@@ -27,13 +27,25 @@
 输出：[1,4,3,2,5]
  */
 var reverseBetween = function (head, left, right) {
-	var successor = null
+	var successor = new ListNode(null)
 
-	function reverseList(head, n) {
+	if (left === 1) {
+		return reverseN(head, right)
+	}
+	head.next = reverseBetween(head.next, left - 1, right - 1)
+	return head
+
+	function reverseN(head, n) {
 		if (n === 1) {
-            successor = head.next
-            return head
-        }
+			successor = head.next
+			return head
+		}
+
+		var last = reverseN(head.next, n - 1)
+		head.next.next = head
+		head.next = successor
+
+		return last
 	}
 }
 

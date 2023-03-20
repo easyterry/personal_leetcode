@@ -1,8 +1,8 @@
 /*
  * @Author: linzhihai
  * @Date: 2021-08-20 15:58:41
- * @LastEditTime: 2021-08-20 17:24:50
- * @Description: 
+ * @LastEditTime: 2023-02-02 15:16:30
+ * @Description:
  */
 /*
  * @lc app=leetcode.cn id=102 lang=javascript
@@ -24,19 +24,26 @@
  * @return {number[][]}
  */
 var levelOrder = function (root) {
-	var queue = [], res = []
+	if (!root) return []
+
+	var queue = [],
+		res = []
 	queue.push(root)
 
 	while (queue.length) {
-		var node = queue.shift()
+		var len = queue.length
+		var path = []
 
-		if (node.left) {
-			queue.push(node.left)
+		for (let i = 0; i < len; i++) {
+			var node = queue.shift()
+
+			path.push(node.val)
+			node.left && queue.push(node.left)
+			node.right && queue.push(node.right)
 		}
 
-		if (node.right) {
-			queue.push(node.right)
-		}   
+		res.push(path)
 	}
+	return res
 }
 // @lc code=end

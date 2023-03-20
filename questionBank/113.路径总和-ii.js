@@ -1,7 +1,7 @@
 /*
  * @Author: linzhihai
  * @Date: 2021-07-30 15:36:43
- * @LastEditTime: 2021-07-30 16:08:29
+ * @LastEditTime: 2023-02-20 15:27:35
  * @Description:
  */
 /*
@@ -25,22 +25,30 @@
  * @return {number[][]}
  */
 var pathSum = function (root, targetSum) {
-	if (root === null) return 0
+	if (root === null) return []
 
-	var pathLeading = count(root, targetSum)
-	var leftPath = pathSum(root.left, targetSum)
-	var rightPath = pathSum(root.right, targetSum)
+	var res = []
+	var path = []
 
-	return pathLeading + leftPath + rightPath
-}
+	traverse(root, 0)
 
-function count(root, targetSum) {
-	if (root === null) return 0
+	return res
 
-	var isMe = root.val === targetSum ? 1 : 0
-	var leftCount = count(root.left, targetSum - root.val)
-	var rightCount = count(root.right, targetSum - root.val)
+	function traverse(root, sum) {
+		if (root === null) {
+			return
+		}
 
-	return isMe + leftCount + rightCount
+		sum += root.val
+		path.push(root.val)
+
+		if (sum === targetSum && root.left === null && root.right === null) {
+			res.push(path.slice())
+		}
+
+		traverse(root.left, sum)
+		traverse(root.right, sum)
+		path.pop()
+	}
 }
 // @lc code=end

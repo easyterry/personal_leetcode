@@ -1,4 +1,10 @@
 /*
+ * @Author: linzhihai
+ * @Date: 2022-04-19 14:19:48
+ * @LastEditTime: 2022-08-22 18:14:56
+ * @Description:
+ */
+/*
  * @lc app=leetcode.cn id=509 lang=javascript
  *
  * [509] 斐波那契数
@@ -13,14 +19,16 @@
 解释：F(2) = F(1) + F(0) = 1 + 0 = 1
  */
 var fib = function (n) {
-  if (n === 0) {
-    return 0;
-  }
+	var dp = new Array(n + 1).fill(0)
+	dp[0] = 0
+	dp[1] = 1
 
-  if (n === 1 || n === 2) {
-    return 1;
-  }
+	for (let i = 2; i < dp.length; i++) {
+		dp[i] = dp[i - 2] + dp[i - 1]
+	}
 
-  return fib(n - 2) + fib(n - 1);
-};
+	return dp[n]
+}
+
+fib(20)
 // @lc code=end

@@ -1,7 +1,7 @@
 /*
  * @Author: linzhihai
  * @Date: 2021-08-02 09:54:10
- * @LastEditTime: 2021-08-02 17:38:45
+ * @LastEditTime: 2022-08-30 16:00:45
  * @Description:
  */
 /*
@@ -17,10 +17,10 @@
  * [10,9,2,5,3,7,101,18] -> 4
  */
 var lengthOfLIS = function (nums) {
-	var dp = Array(nums.length).fill(1)
-	var res = 0
+	var n = nums.length
+	var dp = new Array(n).fill(1)
 
-	for (let i = 0; i < nums.length; i++) {
+	for (let i = 0; i < n; i++) {
 		for (let j = 0; j < i; j++) {
 			if (nums[i] > nums[j]) {
 				dp[i] = Math.max(dp[i], dp[j] + 1)
@@ -28,11 +28,7 @@ var lengthOfLIS = function (nums) {
 		}
 	}
 
-	for (let i = 0; i < dp.length; i++) {
-		res = Math.max(res, dp[i])
-	}
-
-	return res
+	return Math.max.apply(null, dp)
 }
 
 lengthOfLIS([10, 9, 2, 5, 3, 7, 101, 18])

@@ -1,7 +1,7 @@
 /*
  * @Author: linzhihai
  * @Date: 2021-12-24 10:37:25
- * @LastEditTime: 2022-05-13 14:22:33
+ * @LastEditTime: 2022-09-06 10:19:35
  * @Description:
  */
 /*
@@ -24,34 +24,31 @@
  * @return {ListNode}
  */
 var mergeTwoLists = function (list1, list2) {
-  if (list1 === null && list2 === null) {
-    return null;
-  }
-  if (list1 === null) {
-    return list2;
-  }
-  if (list2 === null) {
-    return list1;
-  }
+	var dummy = new ListNode(null)
+	var p = dummy
 
-  var result = new ListNode();
-  var current = result;
+	var p1 = list1,
+		p2 = list2
 
-  while (list1 !== null && list2 !== null) {
-    if (list1.val <= list2.val) {
-      current.next = list1;
+	while (p1 !== null && p2 !== null) {
+		if (p1.val > p2.val) {
+			p.next = p2
+			p2 = p2.next
+		} else {
+			p.next = p1
+			p1 = p1.next
+		}
+		p = p.next
+	}
 
-      list1 = list1.next;
-    } else {
-      current.next = list2;
+	if (p1 !== null) {
+		p.next = p1
+	}
 
-      list2 = list2.next;
-    }
+	if (p2 !== null) {
+		p.next = p2
+	}
 
-    current = current.next;
-  }
-  current.next = list1 ?? list2;
-
-  return result.next;
-};
+	return dummy.next
+}
 // @lc code=end

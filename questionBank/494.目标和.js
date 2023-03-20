@@ -1,7 +1,7 @@
 /*
  * @Author: linzhihai
  * @Date: 2022-08-16 19:27:57
- * @LastEditTime: 2022-08-17 11:24:57
+ * @LastEditTime: 2022-09-02 17:11:45
  * @Description:
  */
 /*
@@ -25,20 +25,23 @@
 +1 + 1 + 1 + 1 - 1 = 3
  */
 var findTargetSumWays = function (nums, target) {
-  var ans = 0;
-  dfs(nums, 0, target);
+	var sum = nums.reduce((prev, curr) => prev + curr)
 
-  return ans;
+	if (sum < target || (sum - target) % 2 !== 0) return 0
 
-  function dfs(nums, d, target) {
-    if (d >= nums.length) {
-      if (target === 0) ++ans;
-      return;
-    }
+	var n = Math.floor((sum - target) / 2)
 
-    dfs(nums, d + 1, target - nums[d]);
-    dfs(nums, d + 1, target + nums[d]);
-  }
-};
-findTargetSumWays([1, 1, 1, 1, 1], 3);
+	var dp = new Array(n + 1).fill(0)
+
+	dp[0] = 1
+
+	for (const num of nums) {
+		for (let j = n; j >= num; j--) {
+			dp[j] += dp[j - num]
+		}
+	}
+
+	return dp[n]
+}
+findTargetSumWays([1, 1, 1, 1, 1], 3)
 // @lc code=end

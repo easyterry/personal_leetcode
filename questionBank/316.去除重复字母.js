@@ -1,7 +1,7 @@
 /*
  * @Author: linzhihai
  * @Date: 2022-02-28 15:31:41
- * @LastEditTime: 2022-02-28 17:03:14
+ * @LastEditTime: 2022-11-17 10:32:44
  * @Description:
  */
 /*
@@ -27,7 +27,6 @@
 var removeDuplicateLetters = function (s) {
 	let map = new Map()
 	let chars = s.split('')
-	let ans = []
 
 	for (let i = 0; i < chars.length; i++) {
 		map.set(chars[i], i)
@@ -51,9 +50,7 @@ var removeDuplicateLetters = function (s) {
 		used.set(chars[i], true)
 	}
 
-	while (stack.length !== 0) ans.push(stack.pop())
-
-	return ans.reverse().join('')
+	return stack.join('')
 }
 
 removeDuplicateLetters('cbacdcbc')

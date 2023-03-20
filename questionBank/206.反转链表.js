@@ -1,7 +1,7 @@
 /*
  * @Author: linzhihai
  * @Date: 2021-06-17 09:39:38
- * @LastEditTime: 2022-04-19 14:27:49
+ * @LastEditTime: 2022-11-16 14:50:42
  * @Description:
  */
 /*
@@ -25,16 +25,25 @@
  *  x <- 1 <- 2 <- 3
  */
 var reverseList = function (head) {
-	let curr = head
-	let prev = null
+	// let curr = head
+	// let prev = null
 
-	while (curr) {
-		const next = curr.next
-		curr.next = prev
-		prev = curr
-		curr = next
+	// while (curr) {
+	// 	const next = curr.next
+	// 	curr.next = prev
+	// 	prev = curr
+	// 	curr = next
+	// }
+
+	// return prev
+	if (head === null || head.next === null) {
+		return head
 	}
 
-	return prev
+	let last = reverseList(head.next)
+	head.next.next = head
+	head.next = null
+
+	return last
 }
 // @lc code=end

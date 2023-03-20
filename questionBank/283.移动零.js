@@ -1,7 +1,7 @@
 /*
  * @Author: linzhihai
  * @Date: 2021-08-19 15:47:58
- * @LastEditTime: 2021-08-19 16:00:30
+ * @LastEditTime: 2022-08-23 12:01:06
  * @Description:
  */
 /*
@@ -18,20 +18,17 @@
 输出: [1,3,12,0,0]
  */
 var moveZeroes = function (nums) {
-	for (let i = 0; i < nums.length; i++) {
-		if (nums[i] !== 0) continue
+	var slow = 0,
+		fast = 0
 
-		for (let j = i + 1; j < nums.length; j++) {
-			if (nums[j] !== 0) {
-				var temp = nums[i]
-				nums[i] = nums[j]
-				nums[j] = temp
-				break
-			}
+	while (fast < nums.length) {
+		if (nums[fast] !== 0) {
+			;[nums[slow], nums[fast]] = [nums[fast], nums[slow]]
+			slow++
 		}
-	}
 
-	return nums
+		fast++
+	}
 }
 
 moveZeroes([0, 1, 0, 3, 12])

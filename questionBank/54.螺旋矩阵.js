@@ -1,7 +1,7 @@
 /*
  * @Author: linzhihai
  * @Date: 2021-08-17 10:13:53
- * @LastEditTime: 2021-08-17 14:24:44
+ * @LastEditTime: 2022-08-24 11:12:22
  * @Description:
  */
 /*
@@ -19,10 +19,10 @@
  */
 var spiralOrder = function (matrix) {
 	var res = []
-	var left = 0
-	var right = matrix[0].length - 1
-	var bottom = matrix.length - 1
-	var top = 0
+	var left = 0,
+		right = matrix[0].length - 1,
+		top = 0,
+		bottom = matrix.length - 1
 
 	while (true) {
 		for (let i = left; i <= right; i++) {
@@ -35,13 +35,13 @@ var spiralOrder = function (matrix) {
 			res.push(matrix[i][right])
 		}
 		right--
-		if (left > right) break
+		if (right < left) break
 
 		for (let i = right; i >= left; i--) {
 			res.push(matrix[bottom][i])
 		}
 		bottom--
-		if (top > bottom) break
+		if (bottom < top) break
 
 		for (let i = bottom; i >= top; i--) {
 			res.push(matrix[i][left])

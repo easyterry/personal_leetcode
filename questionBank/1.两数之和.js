@@ -1,7 +1,7 @@
 /*
  * @Author: linzhihai
  * @Date: 2021-08-13 15:31:38
- * @LastEditTime: 2021-08-13 16:00:49
+ * @LastEditTime: 2022-12-12 17:36:50
  * @Description:
  */
 /*
@@ -20,12 +20,24 @@
 解释：因为 nums[0] + nums[1] == 9 ，返回 [0, 1] 。
  */
 var twoSum = function (nums, target) {
-	for (let i = 0; i < nums.length; i++) {
-		for (let j = i + 1; j < nums.length; j++) {
-			if (nums[i] + nums[j] === target) return [i, j]
-		}
-	}
+	// 1、时间复杂度O(N^2)
+	// for (let i = 0; i < nums.length; i++) {
+	// 	for (let j = i + 1; j < nums.length; j++) {
+	// 		if (nums[i] + nums[j] === target) return [i, j]
+	// 	}
+	// }
+
+	// 空间换时间，时间复杂度O(N)
+	// var numMap = new Map()
+
+	// for (let i = 0; i < nums.length; i++) {
+	// 	if (numMap.get(nums[i]) !== undefined) {
+	// 		return [numMap.get(nums[i]), i]
+	// 	}
+
+	// 	numMap.set(target - nums[i], i)
+	// }
 }
 
-twoSum([3, 2, 4], 6)
+twoSum([2, 7, 11, 15], 9)
 // @lc code=end
