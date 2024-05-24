@@ -24,21 +24,20 @@
  * @return {boolean}
  */
 var stoneGame = function (piles) {
-	var m = piles.length
-	var dp = Array.from({ length: m }, () =>
-		new Array(m).fill(0).map((_) => ({
+	var dp = new Array(piles.length).fill(0).map((item) =>
+		new Array(piles.length).fill(0).map((_) => ({
 			fir: 0,
 			sec: 0,
 		}))
 	)
 
-	for (let i = 0; i < m; i++) {
+	for (let i = 0; i < piles.length; i++) {
 		dp[i][i].fir = piles[i]
 		dp[i][i].sec = 0
 	}
 
-	for (let i = m - 2; i >= 0; i--) {
-		for (let j = i + 1; j < m; j++) {
+	for (let i = piles.length - 2; i >= 0; i--) {
+		for (let j = i + 1; j < piles.length; j++) {
 			let left = piles[i] + dp[i + 1][j].sec
 			let right = piles[j] + dp[i][j - 1].sec
 
@@ -52,9 +51,8 @@ var stoneGame = function (piles) {
 		}
 	}
 
-	var res = dp[0][m - 1]
-
-	return res.fir - res.sec
+	const res = dp[0][piles.length - 1]
+	return res.fir - res.sec >= 0
 }
 
 stoneGame([5, 3, 4, 5])

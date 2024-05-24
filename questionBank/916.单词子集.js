@@ -28,6 +28,49 @@
     示例 2：
     输入：words1 = ["amazon","apple","facebook","google","leetcode"], words2 = ["l","e"]
     输出：["apple","google","leetcode"]
+
+    ["amazon","apple","facebook","google","leetcode"]
+   ["e","oo"]
  */
-var wordSubsets = function (words1, words2) {}
+var wordSubsets = function (words1, words2) {
+	const res = []
+	const charCnt = new Array(26).fill(0)
+
+	for (const c of words2) {
+		const t = helper(c)
+
+		for (let i = 0; i < 26; i++) {
+			charCnt[i] = Math.max(charCnt[i], t[i])
+		}
+	}
+
+	for (const c of words1) {
+		const t = helper(c)
+		let i = 0
+
+		for (; i < 26; i++) {
+			if (t[i] < charCnt[i]) {
+				break
+			}
+		}
+
+		if (i === 26) {
+			res.push(c)
+		}
+	}
+
+	return res
+
+	function helper(word) {
+		const res = new Array(26).fill(0)
+
+		for (const c of word) {
+			++res[c.charCodeAt() - 'a'.charCodeAt()]
+		}
+
+		return res
+	}
+}
+
+wordSubsets(['amazon', 'apple', 'facebook', 'google', 'leetcode'], ['eo', 'oo'])
 // @lc code=end

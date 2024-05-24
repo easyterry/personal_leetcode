@@ -19,15 +19,18 @@
 解释：F(2) = F(1) + F(0) = 1 + 0 = 1
  */
 var fib = function (n) {
-	var dp = new Array(n + 1).fill(0)
-	dp[0] = 0
-	dp[1] = 1
+	let memo = new Array(n + 1).fill(0)
 
-	for (let i = 2; i < dp.length; i++) {
-		dp[i] = dp[i - 2] + dp[i - 1]
+	return dp(memo, n)
+
+	function dp(memo, n) {
+		if (n === 1 || n === 0) return n
+		if (memo[n] !== 0) return memo[n]
+
+		memo[n] = dp(memo, n - 1) + dp(memo, n - 2)
+
+		return memo[n]
 	}
-
-	return dp[n]
 }
 
 fib(20)

@@ -31,15 +31,21 @@ var buildTree = function (preorder, inorder) {
 		dictionary[inorder[i]] = i
 	}
 
+	console.log('dictionary:', dictionary)
+
 	return recur(0, 0, inorder.length - 1)
 
-	function recur(root, left, right) {
-		if (left > right) return null
+	function recur(preStart, inStart, inEnd) {
+		if (inStart > inEnd) return null
 
-		var node = new TreeNode(preorder[root])
-		var i = dictionary[preorder[root]]
-		node.left = recur(root + 1, left, i - 1)
-		node.right = recur(root + (i - left) + 1, i + 1, right)
+		var node = new TreeNode(preorder[preStart])
+		var i = dictionary[preorder[preStart]]
+		// console.log('i:', i)
+		// console.log('1:', preStart + 1, inStart, i - 1)
+		// console.log('2:', preStart + (i - inStart) + 1, i + 1, inEnd)
+		// console.log('===========')
+		node.left = recur(preStart + 1, inStart, i - 1)
+		node.right = recur(preStart + (i - inStart) + 1, i + 1, inEnd)
 		return node
 	}
 }

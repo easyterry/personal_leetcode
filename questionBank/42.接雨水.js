@@ -15,35 +15,8 @@
  * @param {number[]} height
  * @return {number}
  */
-// var trap = function (height) {
-// 	if (height.length < 1) return 0
-
-// 	var left = 0
-// 	var right = height.length - 1
-
-// 	var l_max = height[left]
-// 	var r_max = height[right]
-
-// 	var res = 0
-
-// 	while (left <= right) {
-// 		l_max = Math.max(l_max, height[left])
-// 		r_max = Math.max(r_max, height[right])
-
-// 		if (l_max < r_max) {
-// 			res += l_max - height[left]
-// 			left++
-// 		} else {
-// 			res += r_max - height[right]
-// 			right--
-// 		}
-// 	}
-
-// 	return res
-// }
-
 var trap = function (height) {
-  if (height.length < 0) return 0;
+  if (height.length === 0) return 0;
 
   var res = 0;
   var left = 0;
