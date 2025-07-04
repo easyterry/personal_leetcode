@@ -20,18 +20,23 @@
 var longestCommonPrefix = function (strs) {
 	if (strs.length === 0 || strs === null) return ''
 
-	let commonPrefix = ''
+	for (let col = 0; col < strs[0].length; col++) {
+		for (let row = 1; row < strs.length; row++) {
+			let currentStr = strs[row],
+				prevStr = strs[row - 1]
 
-	for (let i = 1; i < strs.length; i++) {
-		let j = 0
-		for (; j < strs[0].length; j++) {
-			if (strs[0][j] !== strs[i][j]) {
-				break
+			if (
+				col >= currentStr.length ||
+				col >= prevStr.length ||
+				currentStr[col] !== prevStr[col]
+			) {
+				return strs[row].substring(0, col)
 			}
 		}
-		commonPrefix = strs[0].slice(0, j)
 	}
 
-	return commonPrefix
+	return strs[0]
 }
+
+longestCommonPrefix(['flower', 'flow', 'flight'])
 // @lc code=end

@@ -16,35 +16,33 @@
  * @return {number}
  */
 var numIslands = function (grid) {
-	var nums = 0
+	const m = grid.length
+	const n = grid[0].length
+	let nums = 0
 
-	for (let r = 0; r < grid.length; r++) {
-		for (let c = 0; c < grid[0].length; c++) {
-			if (grid[r][c] === '1') {
+	for (let i = 0; i < m; i++) {
+		for (let j = 0; j < n; j++) {
+			if (grid[i][j] === '1') {
 				nums++
-				dfs(grid, r, c)
+				dfs(grid, i, j)
 			}
 		}
 	}
 
-	function dfs(grid, r, c) {
-		if (!checkInIsland(grid, r, c)) {
-			return 0
-		}
-
-		if (grid[r][c] !== '1') {
-			return 0
-		}
-
-		grid[r][c] = '2'
-
-		dfs(grid, r - 1, c)
-		dfs(grid, r + 1, c)
-		dfs(grid, r, c - 1)
-		dfs(grid, r, c + 1)
-	}
-
 	return nums
+
+	function dfs(grid, i, j) {
+		if (!checkInIsland(grid, i, j)) return
+
+		if (grid[i][j] !== '1') return
+
+		grid[i][j] = '0'
+
+		dfs(grid, i + 1, j)
+		dfs(grid, i - 1, j)
+		dfs(grid, i, j + 1)
+		dfs(grid, i, j - 1)
+	}
 }
 
 var checkInIsland = function (grid, r, c) {
